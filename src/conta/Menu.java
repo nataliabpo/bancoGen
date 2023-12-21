@@ -56,12 +56,12 @@ public class Menu {
 				opcao = 0;
 			}
 
-			sobre();
-			opcao = leia.nextInt();
+			
+			
 			if (opcao == 9) {
 				System.out.println(
 						Cores.TEXT_WHITE_BOLD + "\n Banco Casa da Mãe Joana - Aqui sempre cabe mais uma dívida ❤️!");
-
+				sobre();
 				leia.close();
 				System.exit(0);
 			}
@@ -226,7 +226,7 @@ public class Menu {
 
 		try {
 
-			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.out.println(Cores.TEXT_RESET + "\nPressione Enter para Continuar...");
 			System.in.read();
 
 		} catch (IOException e) {

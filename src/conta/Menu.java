@@ -1,22 +1,36 @@
 package conta;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import conta.model.Conta;
+
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 import conta.util.Cores;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		Scanner leia = new Scanner(System.in);
-		
-		Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
-		c1.visualizar();
-		c1.sacar(12000.0f);
-		c1.visualizar();
-		c1.depositar(5000.0f);
-		c1.visualizar();
-
-		
+	
+ 
 		int opcao;
+		
+		// Teste da Classe Conta Corrente
+				ContaCorrente cc1 = new ContaCorrente(1, 123, 1, "Maria Joaquina", 0.0f, 1000.0f);
+				cc1.visualizar();
+				cc1.sacar(12000.0f);
+				cc1.visualizar();
+				cc1.depositar(5000.0f);
+				cc1.visualizar();
+				
+		        // Teste da Classe Conta Poupança
+				ContaPoupanca cp1 = new ContaPoupanca(2, 123, 2, "Maria José", 200000.0f, 15);
+				cp1.visualizar();
+		        cp1.sacar(1000.0f);
+				cp1.visualizar();
+				cp1.depositar(5000.0f);
+				cp1.visualizar();
+				
 		while (true) {
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
 					+ "********************************************");
@@ -36,10 +50,19 @@ public class Menu {
 			System.out.println("Entre com a opção desejada:               ");
 			System.out.println("                                          "+ Cores.TEXT_RESET);
 			
+			try {
+				opcao = leia.nextInt();
+			}catch(InputMismatchException e){
+				System.out.println("\nDigite valores inteiros!");
+				leia.nextLine();
+				opcao=0;
+			}
+			
+			sobre();
 			opcao = leia.nextInt();
 			 if (opcao == 9) {
 				 System.out.println(Cores.TEXT_WHITE_BOLD + "\n Banco Casa da Mãe Joana - Aqui sempre cabe mais uma dívida ❤️!");
-				 sobre();
+				
 				 leia.close();
 				 System.exit(0);
 			 }
@@ -80,7 +103,7 @@ public class Menu {
 				default:
 					System.out.println(Cores.TEXT_WHITE_BOLD + "\nOpção Inválida!\n");
 					break;
-			
+					
 		}
 	}
 
@@ -91,5 +114,18 @@ public class Menu {
 		System.out.println("Generation Brasil - generation@generation.org");
 		System.out.println("https://github.com/nataliabpo/bancoGen");
 		System.out.println("*********************************************************");
+	}
+	
+	public static void keyPress() {
+
+		try {
+
+			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.in.read();
+
+		} catch (IOException e) {
+
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+		}
 	}
 }
